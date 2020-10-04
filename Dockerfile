@@ -13,8 +13,8 @@ ENV PROTOTOOL_VERSION=v1.10.0 \
     PROTOBUF_VERSION=3.13.0
 
 RUN curl -L https://github.com/uber/prototool/releases/download/${PROTOTOOL_VERSION}/prototool-Linux-x86_64.tar.gz | tar xvz \
-    && mv prototool/bin/prototool /usr/bin/prototool \
-    && chmod +x /usr/bin/prototool \
+    && mv prototool/bin/prototool /usr/local/bin/prototool \
+    && chmod +x /usr/local/bin/prototool \
     && rm -rf prototool
 
 RUN GO111MODULE=on go get \
@@ -63,15 +63,6 @@ RUN mkdir -p /tmp/protoc && \
     cd /tmp/protoc && \
     unzip protoc.zip && \
     mv /tmp/protoc/include /usr/local/include
-
-# RUN mkdir -p /tmp/prototool
-# COPY go.mod go.sum /tmp/prototool/
-# RUN cd /tmp/prototool && go mod download
-# COPY cmd /tmp/prototool/cmd
-# COPY internal /tmp/prototool/internal
-# RUN cd /tmp/prototool && \
-#     go install ./cmd/prototool && \
-#     mv /go/bin/prototool /usr/local/bin/prototool
 
 RUN upx --lzma /usr/local/bin/*
 
