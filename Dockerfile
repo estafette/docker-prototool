@@ -73,7 +73,7 @@ RUN mkdir -p /tmp/protoc && \
 #     go install ./cmd/prototool && \
 #     mv /go/bin/prototool /usr/local/bin/prototool
 
-# RUN upx --lzma /usr/local/bin/*
+RUN upx --lzma /usr/local/bin/*
 
 FROM alpine:3.12
 
