@@ -4,7 +4,7 @@ RUN apk add --update --no-cache build-base curl git upx && \
     rm -rf /var/cache/apk/*
 
 ENV PROTOTOOL_VERSION=v1.10.0 \
-    GOLANG_PROTOBUF_VERSION=1.4.2 \
+    GOLANG_PROTOBUF_VERSION=1.25.0 \
     GOGO_PROTOBUF_VERSION=1.3.1 \
     GRPC_GATEWAY_VERSION=1.8.5 \
     YARPC_VERSION=1.37.3 \
@@ -18,7 +18,7 @@ RUN curl -L https://github.com/uber/prototool/releases/download/${PROTOTOOL_VERS
     && rm -rf prototool
 
 RUN GO111MODULE=on go get \
-    github.com/golang/protobuf/protoc-gen-go@v${GOLANG_PROTOBUF_VERSION} \
+    google.golang.org/protobuf/protoc-gen-go@v${GOLANG_PROTOBUF_VERSION} \
     github.com/gogo/protobuf/protoc-gen-gofast@v${GOGO_PROTOBUF_VERSION} \
     github.com/gogo/protobuf/protoc-gen-gogo@v${GOGO_PROTOBUF_VERSION} \
     github.com/gogo/protobuf/protoc-gen-gogofast@v${GOGO_PROTOBUF_VERSION} \
@@ -85,7 +85,7 @@ RUN echo 'http://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/apk/reposit
 COPY --from=builder /usr/local/bin /usr/local/bin
 COPY --from=builder /usr/local/include /usr/include
 
-ENV GOLANG_PROTOBUF_VERSION=1.4.2 \
+ENV GOLANG_PROTOBUF_VERSION=1.25.0 \
     GOGO_PROTOBUF_VERSION=1.3.1 \
     GRPC_GATEWAY_VERSION=1.8.5 \
     YARPC_VERSION=1.37.3 \
