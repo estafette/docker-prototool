@@ -10,10 +10,10 @@ ENV PROTOTOOL_VERSION=v1.10.0 \
     YARPC_VERSION=1.37.3 \
     TWIRP_VERSION=5.7.0 \
     GRPC_WEB_VERSION=1.0.4 \
-    PROTOTOOL_VERSION= \
     PROTOBUF_VERSION=3.13.0
 
 RUN curl -L https://github.com/uber/prototool/releases/download/${PROTOTOOL_VERSION}/prototool-Linux-x86_64.tar.gz | tar xvz \
+    && ls -latr \
     && mv linux-amd64/prototool /usr/bin/prototool \
     && chmod +x /usr/bin/prototool \
     && rm -rf linux-amd64
