@@ -13,10 +13,9 @@ ENV PROTOTOOL_VERSION=v1.10.0 \
     PROTOBUF_VERSION=3.13.0
 
 RUN curl -L https://github.com/uber/prototool/releases/download/${PROTOTOOL_VERSION}/prototool-Linux-x86_64.tar.gz | tar xvz \
-    && ls -latr \
-    && mv linux-amd64/prototool /usr/bin/prototool \
+    && mv prototool/bin/prototool /usr/bin/prototool \
     && chmod +x /usr/bin/prototool \
-    && rm -rf linux-amd64
+    && rm -rf prototool
 
 RUN GO111MODULE=on go get \
     github.com/golang/protobuf/protoc-gen-go@v${GOLANG_PROTOBUF_VERSION} \
