@@ -1,0 +1,22 @@
+labels:
+  language: docker
+
+version:
+  semver:
+    major: 0
+    minor: 0
+
+stages:
+  bake:
+    image: extensions/docker:stable
+    action: build
+    container: prototool
+    repositories:
+    - estafette
+
+  push-to-docker-registry:
+    image: extensions/docker:stable
+    action: push
+    container: prototool
+    repositories:
+    - estafette
