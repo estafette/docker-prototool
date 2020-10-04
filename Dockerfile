@@ -26,6 +26,10 @@ RUN GO111MODULE=on go get \
     github.com/gogo/protobuf/protoc-gen-gogoslick@v${GOGO_PROTOBUF_VERSION} && \
     mv /go/bin/protoc-gen-go* /usr/local/bin/
 
+RUN GO111MODULE=on go get \
+    github.com/GoogleCloudPlatform/protoc-gen-bq-schema && \
+    mv /go/bin/protoc-gen-bq-schema /usr/local/bin/
+
 RUN curl -sSL \
     https://github.com/grpc-ecosystem/grpc-gateway/releases/download/v${GRPC_GATEWAY_VERSION}/protoc-gen-grpc-gateway-v${GRPC_GATEWAY_VERSION}-linux-x86_64 \
     -o /usr/local/bin/protoc-gen-grpc-gateway && \
@@ -34,7 +38,6 @@ RUN curl -sSL \
     -o /usr/local/bin/protoc-gen-swagger && \
     chmod +x /usr/local/bin/protoc-gen-grpc-gateway && \
     chmod +x /usr/local/bin/protoc-gen-swagger
-
 
 RUN curl -sSL \
     https://github.com/grpc/grpc-web/releases/download/${GRPC_WEB_VERSION}/protoc-gen-grpc-web-${GRPC_WEB_VERSION}-linux-x86_64 \
