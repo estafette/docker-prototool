@@ -18,7 +18,7 @@ RUN curl -L https://github.com/uber/prototool/releases/download/${PROTOTOOL_VERS
     && rm -rf prototool
 
 RUN GO111MODULE=on go get \
-    google.golang.org/protobuf/protoc-gen-go@v${GOLANG_PROTOBUF_VERSION} \
+    google.golang.org/protobuf/cmd/protoc-gen-go@v${GOLANG_PROTOBUF_VERSION} \
     github.com/gogo/protobuf/protoc-gen-gofast@v${GOGO_PROTOBUF_VERSION} \
     github.com/gogo/protobuf/protoc-gen-gogo@v${GOGO_PROTOBUF_VERSION} \
     github.com/gogo/protobuf/protoc-gen-gogofast@v${GOGO_PROTOBUF_VERSION} \
