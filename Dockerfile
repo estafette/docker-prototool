@@ -10,7 +10,7 @@ ENV PROTOTOOL_VERSION=v1.10.0 \
     YARPC_VERSION=1.37.3 \
     TWIRP_VERSION=5.7.0 \
     GRPC_WEB_VERSION=1.0.4 \
-    PROTOBUF_VERSION=3.13.0
+    PROTOBUF_VERSION=3.12.2
 
 RUN curl -L https://github.com/uber/prototool/releases/download/${PROTOTOOL_VERSION}/prototool-Linux-x86_64.tar.gz | tar xvz \
     && mv prototool/bin/prototool /usr/local/bin/prototool \
@@ -73,10 +73,10 @@ WORKDIR /work
 ENV \
     PROTOTOOL_PROTOC_BIN_PATH=/usr/bin/protoc \
     PROTOTOOL_PROTOC_WKT_PATH=/usr/include \
-    GRPC_VERSION=1.25.0 \
-    PROTOBUF_VERSION=3.13.0 \
+    GRPC_VERSION=1.28.1 \
     ALPINE_GRPC_VERSION_SUFFIX=r1 \
-    ALPINE_PROTOBUF_VERSION_SUFFIX=r1
+    PROTOBUF_VERSION=3.12.2 \
+    ALPINE_PROTOBUF_VERSION_SUFFIX=r0
 
 RUN echo 'http://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/apk/repositories && \
     apk add --update --no-cache bash curl git grpc=${GRPC_VERSION}-${ALPINE_GRPC_VERSION_SUFFIX} protobuf=${PROTOBUF_VERSION}-${ALPINE_PROTOBUF_VERSION_SUFFIX} && \
@@ -85,9 +85,9 @@ RUN echo 'http://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/apk/reposit
 COPY --from=builder /usr/local/bin /usr/local/bin
 COPY --from=builder /usr/local/include /usr/include
 
-ENV GOGO_PROTOBUF_VERSION=1.3.1 \
-    GOLANG_PROTOBUF_VERSION=1.4.2 \
+ENV GOLANG_PROTOBUF_VERSION=1.4.2 \
+    GOGO_PROTOBUF_VERSION=1.3.1 \
     GRPC_GATEWAY_VERSION=1.8.5 \
-    GRPC_WEB_VERSION=1.0.4 \
+    YARPC_VERSION=1.37.3 \
     TWIRP_VERSION=5.7.0 \
-    YARPC_VERSION=1.37.3
+    GRPC_WEB_VERSION=1.0.4
