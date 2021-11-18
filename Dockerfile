@@ -66,7 +66,7 @@ RUN mkdir -p /tmp/protoc && \
 
 RUN upx --lzma /usr/local/bin/*
 
-FROM alpine:3.12
+FROM alpine:3.13.7
 
 WORKDIR /work
 
